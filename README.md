@@ -11,7 +11,7 @@ The goal of the project was creating an application for human skin detection. Th
  - Ivan Iuschenko
 
 ### Requirements:
-  - Python 2.6
+  - Python 2.7
   - OpenCV
   - Tkinter
   - PIL
