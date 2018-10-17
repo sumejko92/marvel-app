@@ -2,21 +2,21 @@ import cv2
 import numpy as np
 import imutils
 import Tkinter as tki
-from PIL import Image
-from PIL import ImageTk
+from PIL import Image, ImageTk
 import threading
 import time
 
+# HSV params
 hlow = 0
 slow = 0
 vlow = 0
 hup = 0
 sup = 0
 vup = 0
+
 i = 0
 panel = 0
 paint = 'None'
-
 
 # Function for edge detection
 def auto_canny(image):
@@ -36,7 +36,6 @@ def auto_canny(image):
 cap = cv2.VideoCapture(0)
 # kernel = np.ones((3,3),np.uint8)
 
-
 def video_loop(value):
     global panel
 
@@ -46,7 +45,6 @@ def video_loop(value):
     kernel = np.ones((3, 3), np.uint8)
 
     try:
-
         while 1:
             # Capture frame-by-frame
             ret, frame = cap.read()
@@ -78,7 +76,6 @@ def video_loop(value):
             # Closing for filling small noise holes
             mask = cv2.dilate(mask, kernel, iterations=2)
             mask = cv2.erode(mask, kernel, iterations=2)
-
 
             # Bitwise-AND mask and original image colored
             res = cv2.bitwise_and(frame, frame, mask=mask)
@@ -336,7 +333,6 @@ def video_loop(value):
     except RuntimeError, e:
         print("[INFO] caught a RuntimeError")
 
-
 # Function for changing video and threading
 def change(value):
     global i
@@ -360,7 +356,6 @@ def close_window():
     root.destroy()
     # root.quit
 
-
 # Function for setting default values
 def reset():
 
@@ -372,32 +367,26 @@ def reset():
     s5.set(255)
     s6.set(255)
 
-
 # Slider values
 def h_low(hl1):
     global hlow
     hlow = hl1
 
-
 def s_low(sl1):
     global slow
     slow = sl1
-
 
 def v_low(vl1):
     global vlow
     vlow = vl1
 
-
 def h_up(hu1):
     global hup
     hup = hu1
 
-
 def s_up(su1):
     global sup
     sup = su1
-
 
 def v_up(vu1):
     global vup
@@ -497,7 +486,6 @@ s6 = tki.Scale(root, from_=0, to=255, tickinterval=51, length=200, resolution=1,
                orient=tki.HORIZONTAL, command=v_up, variable=vu)
 s6.set(255)
 s6.grid(row=18, column=6)
-
 
 root.mainloop()
 
